@@ -11,7 +11,7 @@
 
 <meta name="author" content="Almog Simchon" />
 
-<meta name="date" content="2024-09-02" />
+<meta name="date" content="2024-09-03" />
 
 <title>Study_4a</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Study_4a</h1>
 <h4 class="author">Almog Simchon</h4>
-<h4 class="date">2024-09-02</h4>
+<h4 class="date">2024-09-03</h4>
 
 </div>
 
@@ -367,7 +367,7 @@ display: none;
 #create group and remove by exclusion rule
 dt_analysis &lt;- dt |&gt; 
   mutate(group = ifelse(is.na(comp_check_inocul), &quot;control&quot;, &quot;inoculation&quot;)) |&gt; 
-  mutate(exclusion_rule = `Q16_Page Submit`&gt; quantile(`Q16_Page Submit`, 0.3)*0.5) |&gt; 
+  mutate(exclusion_rule = `Q16_Page Submit`&gt; quantile(`Q16_Page Submit`, 0.5)*0.5) |&gt; 
   filter(exclusion_rule)
 
 #add NLP measures
@@ -411,7 +411,7 @@ p
 0.56
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.53 – 0.59
+0.53 – 0.60
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -425,10 +425,10 @@ group [inoculation]
 -0.05
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.09 – -0.00
+-0.10 – 0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.045</strong>
+0.053
 </td>
 </tr>
 <tr>
@@ -436,13 +436,13 @@ group [inoculation]
 stance pls
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.04
+0.05
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.04 – 0.13
+-0.03 – 0.14
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.304
+0.229
 </td>
 </tr>
 <tr>
@@ -450,13 +450,13 @@ stance pls
 politic [Independent]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.02
+-0.03
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.06 – 0.03
+-0.07 – 0.02
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.475
+0.280
 </td>
 </tr>
 <tr>
@@ -467,10 +467,10 @@ politic [Prefer not to<br>answer]
 0.37
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.04 – 0.79
+-0.05 – 0.78
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.080
+0.084
 </td>
 </tr>
 <tr>
@@ -484,7 +484,7 @@ politic [Republican]
 -0.02 – 0.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.348
+0.330
 </td>
 </tr>
 <tr>
@@ -492,13 +492,13 @@ politic [Republican]
 group [inoculation] ×<br>stance pls
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.11
+-0.12
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.23 – 0.00
+-0.24 – 0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.058
+0.067
 </td>
 </tr>
 <tr>
@@ -506,13 +506,13 @@ group [inoculation] ×<br>stance pls
 group [inoculation] ×<br>politic [Independent]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.03
+0.04
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.04 – 0.10
+-0.03 – 0.11
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.399
+0.275
 </td>
 </tr>
 <tr>
@@ -526,7 +526,7 @@ group [inoculation] ×<br>politic [Prefer not to<br>answer]
 -0.84 – 0.08
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.103
+0.104
 </td>
 </tr>
 <tr>
@@ -534,13 +534,13 @@ group [inoculation] ×<br>politic [Prefer not to<br>answer]
 group [inoculation] ×<br>politic [Republican]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.01
+0.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.05 – 0.08
+-0.06 – 0.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.720
+0.930
 </td>
 </tr>
 <tr>
@@ -548,13 +548,13 @@ group [inoculation] ×<br>politic [Republican]
 stance pls × politic<br>[Independent]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.03
+-0.05
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.15 – 0.09
+-0.18 – 0.07
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.635
+0.404
 </td>
 </tr>
 <tr>
@@ -562,13 +562,13 @@ stance pls × politic<br>[Independent]
 stance pls × politic<br>[Prefer not to answer]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.96
+0.95
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.18 – 2.09
+-0.19 – 2.08
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.099
+0.103
 </td>
 </tr>
 <tr>
@@ -579,10 +579,10 @@ stance pls × politic<br>[Republican]
 0.06
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.05 – 0.17
+-0.05 – 0.18
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.283
+0.284
 </td>
 </tr>
 <tr>
@@ -590,13 +590,13 @@ stance pls × politic<br>[Republican]
 (group [inoculation] ×<br>stance pls) × politic<br>[Independent]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.06
+0.08
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.11 – 0.23
+-0.10 – 0.26
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.511
+0.369
 </td>
 </tr>
 <tr>
@@ -611,7 +611,7 @@ answer]
 -2.28 – 0.22
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.106
+0.108
 </td>
 </tr>
 <tr>
@@ -619,13 +619,13 @@ answer]
 (group [inoculation] ×<br>stance pls) × politic<br>[Republican]
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.03
+0.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.14 – 0.19
+-0.17 – 0.18
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.747
+0.944
 </td>
 </tr>
 <tr>
@@ -633,7 +633,7 @@ answer]
 Observations
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
-653
+599
 </td>
 </tr>
 <tr>
@@ -641,7 +641,7 @@ Observations
 R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.036 / 0.013
+0.040 / 0.015
 </td>
 </tr>
 </table>

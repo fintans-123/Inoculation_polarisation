@@ -13,7 +13,7 @@ dt <- read_csv('Data/s4a_raw_data.csv')
 #create group and remove by exclusion rule
 dt_analysis <- dt |> 
   mutate(group = ifelse(is.na(comp_check_inocul), "control", "inoculation")) |> 
-  mutate(exclusion_rule = `Q16_Page Submit`> quantile(`Q16_Page Submit`, 0.3)*0.5) |> 
+  mutate(exclusion_rule = `Q16_Page Submit`> quantile(`Q16_Page Submit`, 0.5)*0.5) |> 
   filter(exclusion_rule)
 
 #add NLP measures
