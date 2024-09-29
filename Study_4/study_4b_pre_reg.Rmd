@@ -1,0 +1,39 @@
+---
+title: "Study 5"
+author: "Almog Simchon"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r , message=FALSE, warning=FALSE}
+library(tidyverse)
+#create group and remove by exclusion rule
+dt_pro_choice <- read_csv('Data/s4b_pro_choice.csv') |> 
+  mutate(stance = "pro_choice")
+
+dt_pro_life <- read_csv('Data/s4b_pro_life.csv') |> 
+  mutate(stance = "pro_life")
+
+dt <- dt_pro_choice |> 
+  bind_rows(dt_pro_life)
+
+dt_analysis <- dt |> 
+  mutate(group = ifelse(is.na(comp_check_inocul), "control", "inoculation")) |> 
+  mutate(exclusion_rule = `Q16_Page Submit`> quantile(`Q16_Page Submit`, 0.3)*0.5) |> 
+  filter(exclusion_rule, chatGPT=="No") |> 
+  distinct(text, .keep_all = T)
+
+
+#add NLP measures
+s4b_nlp <- read_csv("NLP_data/study_4b_nlp.csv")
+
+dt_analysis_nlp <- dt_analysis |> 
+  left_join(s4b_nlp, by = "ResponseId")
+
+#model
+
+lm_prereg <- lm(data = dt_analysis_nlp, affective_pol~group*stance*politic)
+sjPlot::tab_model(lm_prereg)
+
+```
+
