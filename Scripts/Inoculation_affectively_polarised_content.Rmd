@@ -8,7 +8,7 @@ output: html_document
 
 ```{r, include=FALSE}
 
-setwd('C:/Users/fintan.smith/Documents/Diss')
+#setwd('C:/Users/fintan.smith/Documents/Diss')
 
 ```
 
