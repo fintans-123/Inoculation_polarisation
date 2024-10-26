@@ -425,6 +425,19 @@ mod_2_share <- afex::aov_ez(id = "ID",
 
 nice(mod_2_share)
 
+# add crt as a covariate to sharing
+
+# 2x2 ANOVA
+mod_2_share_crt <- afex::aov_ez(id = "ID",
+             dv = "value",
+             between = "cond",
+             within = "derogatory",
+             covariate = "crt_score",
+             na.rm=TRUE,
+             data = dt_analysis_sharing_only_2)
+
+nice(mod_2_share_crt)
+
 ```
 
 ## Experiment 2: Clicking analysis
