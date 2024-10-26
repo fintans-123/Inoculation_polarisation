@@ -385,6 +385,18 @@ mod_2_engage <- afex::aov_ez(id = "ID",
 
 nice(mod_2_engage)
 
+# repeat the same model, adding CRT score as a covariate
+
+mod_2_engage_crt <- afex::aov_ez(id = "ID",
+             dv = "value",
+             between = "cond",
+             within = "derogatory",
+             covariate = "crt_score",
+             na.rm=TRUE,
+             data = dt_analysis_sharing_2)
+
+nice(mod_2_engage_crt)
+
 ```
 
 
