@@ -343,12 +343,20 @@ keep_score_2 <- function(x){
 }
 
 #data wrangling
+  mutate(crt_score = sum(c_across(starts_with("crt_")))) %>%
+  ungroup()
 
 dt_analysis_remove_reaction_2 <- dt_2 %>% 
     mutate(across(scapegoating_leave_sharing:emotional_control_remain_click_1,
-                keep_score_2)) %>% 
-  dplyr::select(ID, split_video, scapegoating_leave_sharing:emotional_control_remain_click_1) %>% 
-  pivot_longer(-c(ID,split_video)) %>%
+                keep_score_2),
+                crt_1_score= ifelse(CRT1==0.05,1,0), # score each crt
+                crt_2_score= ifelse(CRT2==5,1,0),
+                crt_3_score= ifelse(CRT3==47,1,0))%>%
+                rowwise()%>%
+    mutate(crt_score = sum(c_across(starts_with("crt_")))) %>% # create overall crt score
+                ungroup()%>% 
+  dplyr::select(ID, split_video, scapegoating_leave_sharing:emotional_control_remain_click_1,crt_score) %>% 
+  pivot_longer(-c(ID,split_video,crt_score)) %>%
   filter(!str_detect(name, "reaction")) %>% 
   filter(str_detect(name,"_1"))%>%
   mutate(derogatory = ifelse(str_detect(name, "_control_"),
@@ -377,6 +385,18 @@ mod_2_engage <- afex::aov_ez(id = "ID",
 
 nice(mod_2_engage)
 
+# repeat the same model, adding CRT score as a covariate
+
+mod_2_engage_crt <- afex::aov_ez(id = "ID",
+             dv = "value",
+             between = "cond",
+             within = "derogatory",
+             covariate = "crt_score",
+             na.rm=TRUE,
+             data = dt_analysis_sharing_2)
+
+nice(mod_2_engage_crt)
+
 ```
 
 
@@ -404,6 +424,19 @@ mod_2_share <- afex::aov_ez(id = "ID",
              data = dt_analysis_sharing_only_2)
 
 nice(mod_2_share)
+
+# add crt as a covariate to sharing
+
+# 2x2 ANOVA
+mod_2_share_crt <- afex::aov_ez(id = "ID",
+             dv = "value",
+             between = "cond",
+             within = "derogatory",
+             covariate = "crt_score",
+             na.rm=TRUE,
+             data = dt_analysis_sharing_only_2)
+
+nice(mod_2_share_crt)
 
 ```
 
