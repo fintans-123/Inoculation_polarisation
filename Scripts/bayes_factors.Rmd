@@ -1,0 +1,113 @@
+---
+title: "BFs"
+author: "Almog Simchon"
+date: '2024-01-26'
+output: rmdformats::html_clean
+---
+# LMM modeling
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#define function to call external rmd file
+source_rmd = function(file, ...) {
+  tmp_file = tempfile(fileext=".R")
+  on.exit(unlink(tmp_file), add = TRUE)
+  knitr::purl(file, output=tmp_file)
+  source(file = tmp_file, ...)
+}
+```
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+#source the other rmd file for model fitting
+source_rmd("merged_rmd.rmd")
+```
+
+
+## Experiment 1 
+
+```{r e1, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lme4)
+library(bayestestR)
+library(performance)
+
+
+lme_s1 <- lmer(data = dt_analysis_sharing, value~cond*derogatory + (1|ID))
+lme_s1_empty <- lmer(data = dt_analysis_sharing, value~1 + (1|ID))
+lme_s1_cond <- lmer(data = dt_analysis_sharing, value~cond + (1|ID))
+lme_s1_cond_derogatory <- lmer(data = dt_analysis_sharing, value~cond+derogatory + (1|ID))
+
+# get BFs ####----
+
+#null vs. cond
+bayestestR::bayesfactor_models(lme_s1_empty,lme_s1_cond)
+
+#cond vs. cond_derogatory 
+
+bayestestR::bayesfactor_models(lme_s1_cond,lme_s1_cond_derogatory)
+
+#cond_derogatory vs. full
+bayestestR::bayesfactor_models(lme_s1_cond_derogatory,lme_s1)
+
+
+sjPlot::tab_model(lme_s1_empty,lme_s1_cond,lme_s1_cond_derogatory,lme_s1)
+
+
+```
+## Experiment 2 
+
+```{r e2, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lme4)
+library(bayestestR)
+library(performance)
+
+
+lme_s2 <- lmer(data = dt_analysis_sharing_2, value~cond*derogatory + (1|ID))
+lme_s2_empty <- lmer(data = dt_analysis_sharing_2, value~1 + (1|ID))
+lme_s2_cond <- lmer(data = dt_analysis_sharing_2, value~cond + (1|ID))
+lme_s2_cond_derogatory <- lmer(data = dt_analysis_sharing_2, value~cond+derogatory + (1|ID))
+
+# get BFs ####----
+
+#null vs. cond
+bayestestR::bayesfactor_models(lme_s2_empty,lme_s2_cond)
+
+#cond vs. cond_derogatory 
+bayestestR::bayesfactor_models(lme_s2_cond,lme_s2_cond_derogatory)
+
+#cond_derogatory vs. full
+bayestestR::bayesfactor_models(lme_s2_cond_derogatory,lme_s2)
+
+
+sjPlot::tab_model(lme_s2_empty,lme_s2_cond,lme_s2_cond_derogatory,lme_s2)
+
+```
+## Experiment 3
+
+```{r e3, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lme4)
+library(bayestestR)
+library(performance)
+
+
+lme_s3 <- lmer(data = data_3_b, value~treatment*sharing + (1|participant_id))
+lme_s3_empty <- lmer(data = data_3_b, value~1 + (1|participant_id))
+lme_s3_cond <- lmer(data = data_3_b, value~treatment + (1|participant_id))
+lme_s3_cond_derogatory <- lmer(data = data_3_b, value~treatment+sharing + (1|participant_id))
+
+# get BFs ####----
+
+#null vs. cond
+bayestestR::bayesfactor_models(lme_s3_empty,lme_s3_cond)
+
+#cond vs. cond_derogatory
+bayestestR::bayesfactor_models(lme_s3_cond,lme_s3_cond_derogatory)
+
+#cond_derogatory vs. full
+bayestestR::bayesfactor_models(lme_s3_cond_derogatory,lme_s3)
+
+
+sjPlot::tab_model(lme_s3_empty,lme_s3_cond,lme_s3_cond_derogatory,lme_s3)
+
+```

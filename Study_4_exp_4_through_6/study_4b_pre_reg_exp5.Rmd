@@ -8,10 +8,10 @@ output: html_document
 ```{r , message=FALSE, warning=FALSE}
 library(tidyverse)
 #create group and remove by exclusion rule
-dt_pro_choice <- read_csv('Data/s4c_pro_choice.csv') |> 
+dt_pro_choice <- read_csv('Data/s5_pro_choice.csv') |> 
   mutate(stance = "pro_choice")
 
-dt_pro_life <- read_csv('Data/s4c_pro_life.csv') |> 
+dt_pro_life <- read_csv('Data/s5_pro_life.csv') |> 
   mutate(stance = "pro_life")
 
 dt <- dt_pro_choice |> 
@@ -25,10 +25,10 @@ dt_analysis <- dt |>
 
 
 #add NLP measures
-s4c_nlp <- read_csv("NLP_data/study_4c_nlp.csv")
+s4b_nlp <- read_csv("NLP_data/study_4b_nlp.csv")
 
 dt_analysis_nlp <- dt_analysis |> 
-  left_join(s4c_nlp, by = "ResponseId")
+  left_join(s4b_nlp, by = "ResponseId")
 
 #model
 
