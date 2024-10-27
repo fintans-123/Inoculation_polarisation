@@ -8,7 +8,7 @@ output: html_document
 ```{r , message=FALSE, warning=FALSE}
 library(tidyverse)
 
-dt <- read_csv('Data/s4a_raw_data.csv')
+dt <- read_csv('Data/s4_raw_data.csv')
 
 
 #create group and remove by exclusion rule
